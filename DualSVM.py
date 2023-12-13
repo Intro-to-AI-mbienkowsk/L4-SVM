@@ -14,8 +14,8 @@ class DualSVM:
                  degree=DEFAULT_DEGREE,
                  learning_rate=DEFAULT_LEARNING_RATE,
                  epochs=DEFAULT_EPOCHS,
-                 num_to_recognize=DEFAULT_NUM_TO_RECOGNIZE,
-                 ):
+                 num_to_recognize=DEFAULT_NUM_TO_RECOGNIZE):
+
         self.sigma = sigma
         self.c = c
         self.learning_rate = learning_rate
@@ -23,7 +23,7 @@ class DualSVM:
         self.num = num_to_recognize
 
         self.training_x = training_data
-        self.training_y = training_labels
+        self.training_y = self.process_labels(training_labels)
         self.dimension = np.size(training_labels)
 
         self.kernel_fun = kernel
@@ -32,6 +32,10 @@ class DualSVM:
         ## todo
         self.alpha = np.random.random(self.dimension)
         self.bias = 0
+
+    def process_labels(self, y):
+        """Transforms the decimal labels into binary ones (it either looks for the number or does not)"""
+        return np.where(y == self.num, 1, -1)
 
     def kernel(self, x1, x2):
         return self._gaussian_kernel(x1, x2) \
@@ -44,7 +48,8 @@ class DualSVM:
     def _polynomial_kernel(self, x1, x2):
         return (x1 @ x2 + POLYNOMIAL_KERNEL_CONSTANT_TERM) ** self.degree
 
-    def fit(self, x, y):
+    def fit(self):
+        x, y = self.training_x, self.training_y
         y_pair_kernel_product = np.outer(y, y) * self.kernel(x, x)
         for i in range(self.epochs):
             gradient = np.ones(self.dimension) - y_pair_kernel_product @ self.alpha
