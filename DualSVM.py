@@ -1,12 +1,18 @@
 import numpy as np
+from util import *
 from sklearn import datasets
 
 
 class DualSVM:
-    def __init__(self, c, kernel, sigma, degree, learning_rate, epochs):
+    def __init__(self, c=DEFAULT_C,
+                 kernel=KERNEL.GAUSSIAN,
+                 sigma=DEFAULT_SIGMA,
+                 degree=DEFAULT_DEGREE,
+                 learning_rate=DEFAULT_LEARNING_RATE,
+                 epochs=DEFAULT_EPOCHS):
         ...
 
-    def _rbf_kernel(self, x1, x2):
+    def _gaussian_kernel(self, x1, x2):
         ...
 
     def _polynomial_kernel(self, x1, x2, degree):
@@ -20,4 +26,3 @@ class DualSVM:
 
     def score(self, x, y):
         ...
-
