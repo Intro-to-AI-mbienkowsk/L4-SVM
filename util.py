@@ -7,6 +7,11 @@ class TRAINING_METHOD(Enum):
     BGD = 2
 
 
+class KERNEL(Enum):
+    POLYNOMIAL = 1
+    GAUSSIAN = 2
+
+
 def import_data():
     train_x = train_images()
     train_y = train_labels()
@@ -21,4 +26,8 @@ DEFAULT_LEARNING_RATE = .0001
 DEFAULT_LAMBDA = 1
 DEFAULT_BATCH_EXPONENT = 6
 REGULARIZATION_SCALAR = .5
+
 DEFAULT_EPOCHS = 100
+DEFAULT_DEGREE = 3
+DEFAULT_SIGMA = .2
+DEFAULT_C = 1
