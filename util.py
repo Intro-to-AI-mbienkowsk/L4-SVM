@@ -2,11 +2,6 @@ from mnist import *
 from enum import Enum
 
 
-class TRAINING_METHOD(Enum):
-    SGD = 1
-    BGD = 2
-
-
 class KERNEL(Enum):
     POLYNOMIAL = 1
     GAUSSIAN = 2
@@ -22,8 +17,8 @@ def import_data():
     return (train_x_processed, train_y), (test_x_processed, test_y)
 
 
-DEFAULT_LEARNING_RATE = .001
-DEFAULT_EPOCHS = 10
+DEFAULT_LEARNING_RATE = .000001
+DEFAULT_EPOCHS = 1000
 DEFAULT_DEGREE = 2
 DEFAULT_SIGMA = .05
 DEFAULT_NUM_TO_RECOGNIZE = 0
