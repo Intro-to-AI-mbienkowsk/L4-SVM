@@ -1,7 +1,6 @@
 import numpy as np
-from util import *
+from src.util import *
 from scipy.spatial.distance import cdist
-from PrimalSVM import MnistPrimalSVM
 
 
 class DualSVM:

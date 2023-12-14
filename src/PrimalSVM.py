@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from util import *
+from src.util import *
 
 
 class PrimalSVM:

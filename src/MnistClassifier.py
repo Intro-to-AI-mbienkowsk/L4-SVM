@@ -1,9 +1,9 @@
 import matplotlib
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, f1_score, accuracy_score, precision_score
 import matplotlib.pyplot as plt
-from DualSVM import DualMnistSVM
-from PrimalSVM import MnistPrimalSVM
-from util import import_data, DEFAULT_C
+from src.DualSVM import DualMnistSVM
+from src.PrimalSVM import MnistPrimalSVM
+from src.util import import_data
 import numpy as np
 
 matplotlib.use('qtagg')
@@ -19,11 +19,10 @@ class MnistClassifier:
 
         if primal:
             self.svms = [
-                            MnistPrimalSVM(training_data=train_x, training_labels=train_y, num_to_recognize=i) for i
-                            in range(9)
+                            MnistPrimalSVM(training_data=train_x, training_labels=train_y, num_to_recognize=i,
+                                           epochs=500) for i in range(9)
                         ] + [MnistPrimalSVM(training_data=train_x, training_labels=train_y, num_to_recognize=i,
-                                            epochs=2000, learning_rate=1e-7) for i in
-                             range(8, 10)]
+                                            epochs=2000, learning_rate=3e-7) for i in range(8, 10)]
 
         else:
             self.svms = [DualMnistSVM(num_to_recognize=i, training_data=train_x[:5000], training_labels=train_y[:5000])
