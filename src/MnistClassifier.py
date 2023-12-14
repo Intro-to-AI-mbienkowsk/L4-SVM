@@ -10,7 +10,7 @@ matplotlib.use('qtagg')
 
 
 class MnistClassifier:
-    def __init__(self, primal=False):
+    def __init__(self, primal=True):
 
         (train_x, train_y), (test_x, test_y) = import_data()
         self.test_x = test_x if primal else test_x[:1000]
@@ -19,11 +19,8 @@ class MnistClassifier:
 
         if primal:
             self.svms = [
-                            MnistPrimalSVM(training_data=train_x, training_labels=train_y, num_to_recognize=i,
-                                           epochs=500) for i in range(9)
-                        ] + [MnistPrimalSVM(training_data=train_x, training_labels=train_y, num_to_recognize=i,
-                                            epochs=2000, learning_rate=3e-7) for i in range(8, 10)]
-
+                MnistPrimalSVM(training_data=train_x, training_labels=train_y, num_to_recognize=i,
+                               epochs=1000) for i in range(10)]
         else:
             self.svms = [DualMnistSVM(num_to_recognize=i, training_data=train_x[:5000], training_labels=train_y[:5000])
                          for i in range(10)]

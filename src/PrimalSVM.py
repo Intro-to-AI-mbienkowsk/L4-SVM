@@ -4,9 +4,9 @@ from src.util import *
 
 
 class PrimalSVM:
-    def __init__(self, training_data, training_labels, c=DEFAULT_C, learning_rate=DEFAULT_LEARNING_RATE, dimension=784,
+    def __init__(self, training_data, training_labels, c=DEFAULT_PRIMAL_C, learning_rate=DEFAULT_PRIMAL_LEARNING_RATE,
+                 dimension=784,
                  epochs=DEFAULT_EPOCHS):
-        # self.weights = np.random.random(dimension)
         self.weights = np.zeros(dimension)
         self.c = c
         self.bias = 0
@@ -63,9 +63,9 @@ class MnistPrimalSVM(PrimalSVM):
     def __init__(self, *args, **kwargs):
         self.target_num = kwargs.pop('num_to_recognize')
         train_y = kwargs.pop('training_labels')
-        super().__init__(*args, dimension=784, training_labels=self.binary_labels(train_y), **kwargs)
+        super().__init__(*args, dimension=784, training_labels=self.process_labels(train_y), **kwargs)
 
-    def binary_labels(self, y):
+    def process_labels(self, y):
         """Maps the given label array onto a binary one containing 1 if the number is equal
         to the number we're trying to classify, else -1
         """

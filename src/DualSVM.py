@@ -7,11 +7,11 @@ class DualSVM:
     def __init__(self,
                  training_data,
                  training_labels,
-                 c=DEFAULT_C,
+                 c=DEFAULT_DUAL_C,
                  kernel=KERNEL.POLYNOMIAL,
                  sigma=DEFAULT_SIGMA,
                  degree=DEFAULT_DEGREE,
-                 learning_rate=DEFAULT_LEARNING_RATE,
+                 learning_rate=DEFAULT_DUAL_LEARNING_RATE,
                  epochs=DEFAULT_EPOCHS):
         self.sigma = sigma
         self.c = c
@@ -25,7 +25,6 @@ class DualSVM:
         self.kernel_fun = kernel
         self.degree = degree
 
-        ## todo
         self.alpha = np.random.random(self.dimension)
         self.bias = 0
 
@@ -63,9 +62,6 @@ class DualSVM:
 
     def score(self, x, y):
         return np.mean(np.sign(y) == self.label(x))
-
-    def hinge_loss(self):
-        ...
 
 
 class DualMnistSVM(DualSVM):
