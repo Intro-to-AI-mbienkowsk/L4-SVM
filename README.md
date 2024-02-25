@@ -1,4 +1,4 @@
-# WSI 2023 LAB3 - Gry o sumie zerowej
+# WSI 2023 LAB4 - Maszyna wektorów nośnych
 ### Maksym Bieńkowski
 
 # Zawartość archiwum
